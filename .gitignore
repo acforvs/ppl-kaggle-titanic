@@ -1,7 +1,6 @@
 *.dir
 
-*.DS_Store
-
 *.idea
 
 
+.DS_Store
