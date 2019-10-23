@@ -21,16 +21,16 @@ print(td.head(), SEPARATOR, file=f)
 td['Is_Alone'] = td.Family == 0
 print('IS_ALONE:\n', td.head(), SEPARATOR, file=f)
 #trying to group tickets by Fare into 4 groups:
-td['Fare_Category'] = pd.cut(td['Fare'], bins=[0, 7.90, 14.5, 35.5, 135.66], labels=['Low', 'Mid', 'High_Mid', 'High'])
+td['Fare_Category'] = pd.cut(td['Fare'], bins=[0, 7.90, 14.5, 35.49, 135.66, 153.4], labels=['Low', 'Mid', 'High_Low', 'High_Mid', 'High'])
 print('FARE_CATEGORY:\n', td.head(), SEPARATOR, file=f)
 #filling missing data:
 #the most common Emarked value:
 td.Embarked.fillna(td.Embarked.mode()[0], inplace=True)
 #NotStated value for the empty fields in Cabin colomn:
-td.Cabin = td.Cabin.fillna('NS')
+td.Cabin = td.Cabin.fillna('NaN')
 print('CABIN:\n', td.head(), SEPARATOR, file=f)
 #Grouping Age
-td['Age_Range'] = pd.cut(td.Age, [0, 10, 20, 30, 40, 50, 60,70,80])
+td['Age_Range'] = pd.cut(td.Age, [0, 16, 32, 48, 64])
 #missing Age:
 td['Appeal'] = td.Name.apply(lambda name : name.split(',')[1].split('.')[0].strip())
 grp = td.groupby(['Sex', 'Pclass'])
